@@ -21,7 +21,7 @@ document.getElementById("desligarBotao").addEventListener("click", function() {
 
 function enviarComando(endpoint) {
     fetch("http://10.41.139.134/ligar" {
-        method: "GET",
+        method: "POST",
     })
     .then(response => {
         console.log("Solicitação enviada com sucesso");
