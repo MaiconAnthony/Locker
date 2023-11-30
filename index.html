@@ -20,7 +20,7 @@ document.getElementById("desligarBotao").addEventListener("click", function() {
 });
 
 function enviarComando(endpoint) {
-    fetch("http://10.41.139.134/ligar" {
+    fetch("http://10.41.139.134"+ endpoint,  {
         method: "POST",
     })
     .then(response => {
