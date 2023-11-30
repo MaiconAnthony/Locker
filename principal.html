@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Locker</title>
+    <style>
+        body {
+            background-color: #282c34;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .logo {
+            width: 60vh;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -40%);
+            z-index: 1; /* Para sobrepor a barra */
+        }
+
+        .barra {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10%;
+            background-color: #0a0f18;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            z-index: 0;
+        }
+
+        .barra .buttonuser {  
+            height: 3em;
+            width: 3em;
+            border-radius: 50%;
+            position: fixed;
+            right: 3%;
+            top: 2%;
+            background-color: white;
+            
+        }
+
+        .barra button {
+            height: 3em;
+            width: 3em;
+            border-radius: 50%;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .barra h1 {
+            font-size: xxx-large;
+            color: white;
+            margin: 0;
+            flex: 1; /* Para ocupar o espaço restante e empurrar o texto para o meio */
+            text-align: center;
+        }
+
+        .barra .inicial {
+            height: 3em;
+            width: 3em;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .barra .inicialicon-btn {
+            background: none;
+            border: none;
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            border-radius: 0px;
+        }
+
+        .barra .inicialicon {
+            position: absolute;  
+            height: 4em;
+            width: 4em;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .fundo {
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5); /* Adicionei um fundo semi-transparente */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: none;
+        }
+
+        .container {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1; /* Para sobrepor a barra */
+        }
+
+        .container h3 {
+            color: white;
+        }
+
+        .bt {
+            border-radius: 5px;
+            position: relative;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #676e7b;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transform: translateY(200%);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .bt:hover,
+        .inicial:hover,
+        .barra .inicialicon-btn:hover,
+        .barra .buttonuser:hover {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Adicionado efeito de sombra ao passar o mouse */
+        }
+
+        .bt:active,
+        .inicial:active {
+            transform: translateY(200%) scale(0.95); /* Adicionado efeito de escala ao clicar */
+        }
+        
+        .user-options {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .user-options p {
+            margin: 0;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .user-options p:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var buttons = document.querySelectorAll('.barra button, .barra .inicial');
+            var user = document.querySelector('.buttonuser');
+            var userOptions = document.querySelector('.user-options');
+            
+            buttons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    this.classList.add('clicked');
+                    setTimeout(function() {
+                        button.classList.remove('clicked');
+                    }, 300);
+                });
+            });
+
+            user.addEventListener('click', function() {
+                userOptions.style.display = (userOptions.style.display === 'block') ? 'none' : 'block';
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        <img class="logo" src="img/logo.png" alt='logoCenter'/>
+        <div class="barra">
+            <!-- Botão com a imagem centralizado -->
+            <button class='inicialicon-btn'>
+                <img class='inicialicon' src="img/inicial.png" alt='iconInicial'>
+            </button>
+
+            <h1 class='inicialtext'>Locker</h1>
+
+            <button class='buttonuser'>
+                <img style="height: 2em; width: 2em; " src="img/user.png" alt='iconUser'/>
+            </button>
+        </div>
+
+        <div class='user-options'>
+            <p>Usuário: Nome do Usuário</p>
+            <p style="color: red;">Logout</p>
+        </div>
+
+        <div class='fundo'></div>
+        <div class='container'>
+            <h3 class='logo'>selecione a opção desejada</h3>
+            <button class='bt'>Trancar</button>
+            <button class='bt'>Destrancar</button>
+        </div>
+    </div>
+</body>
+</html>
