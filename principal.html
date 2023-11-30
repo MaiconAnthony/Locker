@@ -135,7 +135,11 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.7); /* Adicionado efeito de sombra ao passar o mouse */
         }
 
-        .bt:active,
+        .bton:active,
+        .inicial:active {
+            transform: translateY(200%) scale(0.95); /* Adicionado efeito de escala ao clicar */
+        }
+        .btoff:active,
         .inicial:active {
             transform: translateY(200%) scale(0.95); /* Adicionado efeito de escala ao clicar */
         }
@@ -175,11 +179,25 @@
                     }, 300);
                 });
             });
+    document.getElementById("bton").addEventListener("click", function() {
+        enviarComando("/ligar");
+    });
 
-            user.addEventListener('click', function() {
-                userOptions.style.display = (userOptions.style.display === 'block') ? 'none' : 'block';
-            });
+    document.getElementById("btoff").addEventListener("click", function() {
+        enviarComando("/desligar");
+    });
+
+    function enviarComando(endpoint) {
+        fetch("http://IP_DO_SEU_ESP" + endpoint, {
+            method: "GET",
+        })
+        .then(response => {
+            console.log("Solicitação enviada com sucesso");
+        })
+        .catch(error => {
+            console.error("Erro ao enviar solicitação:", error);
         });
+    }
     </script>
 </head>
 <body>
@@ -206,8 +224,8 @@
         <div class='fundo'></div>
         <div class='container'>
             <h3 class='logo'>selecione a opção desejada</h3>
-            <button class='bt'>Trancar</button>
-            <button class='bt'>Destrancar</button>
+            <button class='bton'>Trancar</button>
+            <button class='btoff'>Destrancar</button>
         </div>
     </div>
 </body>
