@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de LED</title>
+</head>
+<body>
+
+<button id="ligarBotao">Ligar LED</button>
+<button id="desligarBotao">Desligar LED</button>
+
+<script>
+document.getElementById("ligarBotao").addEventListener("click", function() {
+    enviarComando("/ligar");
+});
+
+document.getElementById("desligarBotao").addEventListener("click", function() {
+    enviarComando("/desligar");
+});
+
+function enviarComando(endpoint) {
+    fetch("http://10.41.139.134" + endpoint, {
+        method: "GET",
+    })
+    .then(response => {
+        console.log("Solicitação enviada com sucesso");
+    })
+    .catch(error => {
+        console.error("Erro ao enviar solicitação:", error);
+    });
+}
+</script>
+
+</body>
+</html>
