@@ -20,7 +20,7 @@ document.getElementById("desligarBotao").addEventListener("click", function() {
 });
 
 function enviarComando(endpoint) {
-    fetch(endpoint, {
+    fetch("http://IP_DO_SEU_ESP" + endpoint, {
         method: "GET",
     })
     .then(response => {
@@ -30,6 +30,7 @@ function enviarComando(endpoint) {
         console.error("Erro ao enviar solicitação:", error);
     });
 }
+
 </script>
 
 </body>
